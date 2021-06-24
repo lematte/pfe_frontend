@@ -25,6 +25,7 @@ function Formation(props) {
         <div class="swiper-wrapper">
         <div
           id="courses"
+
           className="row courses"
           data-aos="zoom-in"
           data-aos-delay="100"
@@ -62,7 +63,7 @@ function Formation(props) {
                             class="img-fluid"
                             alt=""
                           />
-                          <p className="card-text">{formation.Type} </p>
+                          <p className="card-text">{formation.Formateur.Nom}{'  '} {formation.Type} </p>
                         </div>
                         <div class="trainer-rank d-flex align-items-center">
                           4.7 &nbsp; <FaStar />

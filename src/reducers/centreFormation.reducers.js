@@ -1,6 +1,7 @@
 import {centre_formationConstants} from '../actions/constants';
 const initialState = {
   centre_formation: [],
+  user: [],
   message: null,
   error: null,
 };
@@ -11,6 +12,7 @@ export default (state = initialState, action) => {
       state = {
         ...state,
         centre_formation: action.payload.centre_formation,
+        user: action.payload.centre_formation.User,
         message: 'hello',
       };
       break;

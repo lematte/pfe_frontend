@@ -1,53 +1,75 @@
 import {authConstants} from './constants';
 import axios from '../helpers';
+import {getCandidatByIdUser} from './index';
 
 export const login = (user) => {
   console.log(user);
   return async (dispatch) => {
-      dispatch({
-        type :authConstants.LOGIN_REQUEST
-      })
-
-    const res = await axios.post(`/login`, user)
-    .then((res) =>{
-      const {token, user} = res.data;
-      localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify(user));
-      dispatch({
-        type: authConstants.LOGIN_SUCCESS,
-        payload: {
-          token,
-          user,
-        },
-      });
-
-    })
-    .catch((err) => {
-      dispatch({
-        type: authConstants.LOGOUT_FAILURE,
-        payload: {
-          error: err.response.data,
-        }
-      });
+    dispatch({
+      type: authConstants.LOGIN_REQUEST,
     });
-    /*if (res.status === 200) {
-      const {token, user} = res.data;
-      localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify(user));
-      dispatch({
-        type: authConstants.LOGIN_SUCCESS,
-        payload: {
-          token,
-          user,
-        },
+    const res = await axios.post(`/login`, user)
+      .then((res) => {
+        const {token, user} = res.data;
+        localStorage.setItem('token', token);
+        localStorage.setItem('user', JSON.stringify(user));
+        if(user.role === 'candidat'){
+          dispatch(getCandidatByIdUser(user._id))
+        }
+        dispatch({
+          type: authConstants.LOGIN_SUCCESS,
+          payload: {
+            token,
+            user,
+          },
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: authConstants.LOGIN_FAILURE,
+          payload: {
+            error: err.response.data,
+          },
+        });
       });
-    } else if (res.status !== 200) {
-      dispatch({
-        type: authConstants.LOGOUT_FAILURE,
-        payload: {
-          error: res.data.error,
-        },
-      });
-    }*/
   };
 };
+
+export const signout = () => {
+  return async (dispatch) => {
+    dispatch({type: authConstants.LOGOUT_REQUEST});
+    const res = await axios.post(`/signout`);
+    if (res.status === 200) {
+      localStorage.clear();
+      dispatch({
+        type: authConstants.LOGOUT_SUCCESS,
+      });
+    } else {
+      dispatch({
+        type: authConstants.LOGOUT_FAILURE,
+        payload: {error: res.data.error},
+      });
+    }
+  };
+};
+/*
+export const signout = () => {
+  return async (dispatch) => {
+    dispatch({type: authConstants.LOGOUT_REQUEST});
+    const res = await axios
+      .post(`/signout`)
+      .then(() => {
+        localStorage.clear();
+        dispatch({
+          type: authConstants.LOGOUT_SUCCESS,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: authConstants.LOGOUT_FAILURE,
+          payload: {error: err.data.error},
+        });
+      });
+  };
+};
+*/

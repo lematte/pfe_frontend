@@ -14,9 +14,9 @@ import { BrowserRouter as Router } from "react-router-dom";
 ReactDOM.render(
   <Provider store={store}> 
   <Router>
-    <React.StrictMode>
+    <React.Fragment>
       <App />
-    </React.StrictMode>
+    </React.Fragment>
   </Router>
 </Provider>,
 document.getElementById("root")

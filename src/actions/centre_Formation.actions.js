@@ -4,7 +4,7 @@ import {centre_formationConstants} from './constants';
 export const getcentreFormation = () => {
   return async (dispatch) => {
     dispatch({type: centre_formationConstants.GET_CENTRE_FORMATION_REQUEST});
-    const res = await axios.get(`/centre_formation`);
+    const res = await axios.get(`/centre_formations`);
     console.log(res.data);
     if (res.status === 200) {
       // succes

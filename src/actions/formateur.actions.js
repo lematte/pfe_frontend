@@ -5,7 +5,7 @@ export const getFormateur = () => {
   return async (dispatch) => {
     dispatch({
       type: formateurConstants.GET_FORMATEUR_REQUEST});
-    const res = await axios.get(`/formateur`);
+    const res = await axios.get(`/formateurs`);
     console.log(res.data);
     if (res.status === 200) {
       // succes

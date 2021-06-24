@@ -18,7 +18,7 @@ function Contact() {
               </p>
             </div>
           </div>
-
+          
           <section id="contact" class="contact">
             <div data-aos="fade-up"></div>
 

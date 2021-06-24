@@ -5,7 +5,7 @@ const initState = {
   user: {
     _id: '',
     Email: '',
-    role: ''
+    role: '',
   },
   authenticate: false,
   authenticating: false,
@@ -24,7 +24,7 @@ export default (state = {initState}, action) => {
       };
       break;
     case authConstants.LOGIN_SUCCESS:
-      localStorage.setItem('token',action.payload.token)
+      localStorage.setItem('token', action.payload.token);
       state = {
         ...state,
         user: action.payload.user,
@@ -34,8 +34,8 @@ export default (state = {initState}, action) => {
         loading: false,
       };
       break;
-      case authConstants.LOGIN_FAILURE:
-      localStorage.removeItem('token')
+    case authConstants.LOGIN_FAILURE:
+      localStorage.removeItem('token');
       state = {
         ...state,
         user: null,

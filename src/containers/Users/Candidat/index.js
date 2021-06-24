@@ -1,4 +1,6 @@
 import './index.css';
+import {Container, Row, Col, Modal} from 'react-bootstrap';
+
 import Navbar from '../../../components/sidebar_candidat/Navbar';
 
 const Candidat = () => {
@@ -6,12 +8,21 @@ const Candidat = () => {
     <>
       <Navbar />
       <main>
+           
+              <div className="a line">
+                <h5 style={{color: '#fff'}}>
+                  {' '}
+                  
+                  <a> {'   '}</a> Dashboard
+                </h5>
+              </div>
+        
+       
+          <br />
         <div className="main__container1">
           <div className="main__title1">
             <img src={'hello'} alt="hello" />
             <div className="main__greeting1">
-              <br />
-              <h1>Hello Codersbite</h1>
               <p>Welcome to your admin dashboard</p>
             </div>
           </div>
@@ -23,7 +34,7 @@ const Candidat = () => {
                 aria-hidden="true"
               ></i>
               <div className="card_inner1">
-                <p className="text-primary-p1">Number of Subscribers</p>
+                <p className="text-primary-p">Number of Subscribers</p>
                 <span className="font-bold text-title">578</span>
               </div>
             </div>
@@ -34,7 +45,7 @@ const Candidat = () => {
                 aria-hidden="true"
               ></i>
               <div className="card_inner1">
-                <p className="text-primary-p1">Times of Watching</p>
+                <p className="text-primary-p">Times of Watching</p>
                 <span className="font-bold text-title">2467</span>
               </div>
             </div>
@@ -45,7 +56,7 @@ const Candidat = () => {
                 aria-hidden="true"
               ></i>
               <div className="card_inner1">
-                <p className="text-primary-p1">Number of Videos</p>
+                <p className="text-primary-p">Number of Videos</p>
                 <span className="font-bold text-title">340</span>
               </div>
             </div>
@@ -56,7 +67,7 @@ const Candidat = () => {
                 aria-hidden="true"
               ></i>
               <div className="card_inner1">
-                <p className="text-primary-p1">Number of Likes</p>
+                <p className="text-primary-p">Number of Likes</p>
                 <span className="font-bold text-title">645</span>
               </div>
             </div>

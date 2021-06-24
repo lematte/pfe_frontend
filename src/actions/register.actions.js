@@ -8,8 +8,7 @@ export const signup = (user) => {
       type: registerConstants.REGISTER_REQUEST,
     });
 
-    const res = await axios
-      .post(`/register`, user)
+    const res = await axios.post(`/register`, user)
       .then((res) =>
         dispatch({
           type: registerConstants.REGISTER_SUCCESS,

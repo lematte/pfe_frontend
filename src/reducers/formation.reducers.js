@@ -11,7 +11,7 @@ export default (state = initialState, action) => {
       state = {
         ...state,
         Formation: action.payload.Formation,
-        message: 'hello',
+        message: ' ',
       };
       break;
     case formationConstants.GET_FORMATION_FAILURE:

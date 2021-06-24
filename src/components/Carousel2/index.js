@@ -5,15 +5,6 @@ import {IconContext} from 'react-icons';
 import {Carousel} from 'react-responsive-carousel';
 import {useSelector, useDispatch} from 'react-redux';
 import {getcentreFormation} from '../../actions';
-import Centre_formation from '../../containers/centre-formation';
-
-import {
-  MDBCarousel,
-  MDBCarouselInner,
-  MDBCarouselItem,
-  MDBCarouselElement,
-  MDBCarouselCaption,
-} from 'mdb-react-ui-kit';
 
 const divStyle = {
   width: '100%',
@@ -27,14 +18,15 @@ const MultiCarouselPage = () => {
     dispatch(getcentreFormation());
   }, []);
   const F = useSelector((state) => state.centre_formation.centre_formation);
-  //const m = useSelector((state) => state.centre_formation.message);
+ // const u = useSelector((state) => state.centre_formation.user);
 
   return (
     <div className="container">
       <div className="container" style={{backgroundColor: '#f9faf9'}}>
         <div class="section-title-choseus">
           <br />
-          Les Centres de formations
+          Les Centres de formations{ /*u.map((U) => (U.Email))
+          */}
         </div>
         <br />
         <div
@@ -68,8 +60,8 @@ const MultiCarouselPage = () => {
                         />
                         <div className="card-body course-content">
                           <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h4></h4>
-                            <p>Téléphone : {}</p>
+                            <h4>{centre_formation.Nom_centre}</h4>
+                            <p>Téléphone :  {centre_formation.User.Téléphone}</p>
                           </div>
                           <h3>
                             <a href="course-details.html">
@@ -84,7 +76,7 @@ const MultiCarouselPage = () => {
                                 alt=""
                               />
                               <p className="card-text">
-                                {centre_formation.Type}{' '}
+                                {'   '}{centre_formation.Nom_centre}
                               </p>
                             </div>
                             <div class="trainer-rank d-flex align-items-center">

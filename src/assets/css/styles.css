@@ -492,7 +492,6 @@ body {
     line-height: 1px;
     margin: 0 0 5px 0;
     letter-spacing: 2px;
-    text-transform: uppercase;
     color: #aaaaaa;
     font-family: "Poppins", sans-serif;
   }
@@ -511,7 +510,6 @@ body {
     margin: 0;
     font-size: 36px;
     font-weight: 700;
-    text-transform: uppercase;
     font-family: "Poppins", sans-serif;
     color: #37423b;
   }
@@ -1100,7 +1098,6 @@ body {
   
   .events .read-more a {
     color: #777777;
-    text-transform: uppercase;
     font-weight: 600;
     font-size: 12px;
     transition: 0.3s;

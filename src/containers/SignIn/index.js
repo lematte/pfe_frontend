@@ -13,10 +13,12 @@ import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import clsx from 'clsx';
-//import useFetch from 'use-http';
-import Header from '../../components/Header/index';
 import {createMuiTheme} from '@material-ui/core/styles';
 import {ThemeProvider} from '@material-ui/styles';
+//import Alert from '@material-ui/lab/Alert';
+
+
+import Header from '../../components/Header/index';
 
 import {useDispatch, useSelector} from 'react-redux';
 import {Redirect} from 'react-router-dom';
@@ -24,7 +26,7 @@ import {login} from '../../actions/index';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap.css';
-//importeyt
+
 import Layout from '../../components/Layout/index';
 
 function Copyright() {
@@ -70,31 +72,31 @@ const theme = createMuiTheme({
 
 const SignIn = (props) => {
   const classes = useStyles();
- 
 
-
-  
- 
   const [Email, setEmail] = useState('');
   const [Password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const auth = useSelector( state => state.auth );
-
+  const auth = useSelector((state) => state.auth);
+  const message = useSelector((state) => state.auth.error)
   const dispatch = useDispatch();
-  const AuthUser = JSON.parse(localStorage.getItem('user'))
-  if (localStorage.getItem('token') != undefined ) {
-    if (AuthUser.role === "candidat" ) {
-      return <Redirect to="/candidat/dashboard" />
-    } else if (AuthUser.role === "admin"){
-      return <Redirect to="/admin" />
-    }else if (AuthUser.role === "formateur"){
-      return <Redirect to="/formateur" />
-    }else if (AuthUser.role === "centre_formation"){
-      return <Redirect to="/centre_formation" />
+  const AuthUser = JSON.parse(localStorage.getItem('user'));
+
+  /*if (auth.authenticate && auth.user.role === 'candidat'){
+    return  dispatch(getCandidatByIdUser(auth.user._id))
+}*/
+  if (localStorage.getItem('token') != undefined) {
+    if (AuthUser.role === 'candidat') {
+      return <Redirect to="/candidat/dashboard/" />;
+    } else if (AuthUser.role === 'admin') {
+      return <Redirect to="/admin/dashboard" />;
+    } else if (AuthUser.role === 'formateur') {
+      return <Redirect to="/formateur" />;
+    } else if (AuthUser.role === 'centre_formation') {
+      return <Redirect to="/centre_formation/dashboard" />;
     }
-   // return <Redirect to="/candidat/dashboard" />
-  } 
-  
+    // return <Redirect to="/candidat/dashboard" />
+  }
+
   const userLogin = (e) => {
     e.preventDefault();
     const user = {
@@ -103,14 +105,22 @@ const SignIn = (props) => {
     };
     dispatch(login(user));
   };
-  if (auth.authenticate && auth.user.role === "candidat" ) {
-    return <Redirect to="/candidat/dashboard" />
-  } else if (auth.authenticate && auth.user.role === "admin"){
-    return <Redirect to="/admin" />
-  }else if (auth.authenticate && auth.user.role === "formateur"){
-    return <Redirect to="/formateur" />
-  }else if (auth.authenticate && auth.user.role === "centre_formation"){
-    return <Redirect to="/centre_formation" />
+  /*
+  if (auth.authenticate && auth.user.role === 'candidat'){
+      return  dispatch(getCandidatByIdUser(auth.user._id))
+  }
+  if (auth.authenticate) {
+    return ;
+  } */
+
+  if (auth.authenticate && auth.user.role === 'candidat') {
+    return <Redirect to="/candidat/dashboard" />;
+  } else if (auth.authenticate && auth.user.role === 'admin') {
+    return <Redirect to="/admin/dashboard" />;
+  } else if (auth.authenticate && auth.user.role === 'formateur') {
+    return <Redirect to="/formateur/dashboard" />;
+  } else if (auth.authenticate && auth.user.role === 'centre_formation') {
+    return <Redirect to="/centre_formation/dashboard" />;
   }
 
   return (
@@ -182,6 +192,11 @@ const SignIn = (props) => {
                 </Link>
               </Grid>
             </Grid>
+            <br/>
+            <div  className={message ? 'alert alert-danger' : ' '} >
+            {message}
+            </div>
+            
           </form>
         </div>
         <Box mt={8}>
